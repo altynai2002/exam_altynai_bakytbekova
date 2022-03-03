@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.205" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:text="name"
+        android:textColor="@color/teal_700"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.337"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textSize="16sp"
+        android:text="status"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:gravity="center"
+        android:textColor="@color/teal_700"
+        app:layout_constraintTop_toBottomOf="@id/name"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/species"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:text="species"
+        android:textColor="@color/teal_700"
+        app:layout_constraintTop_toBottomOf="@id/status"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:text="location"
+        android:textColor="@color/teal_700"
+        app:layout_constraintTop_toBottomOf="@id/species"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:text="type"
+        android:textColor="@color/teal_700"
+        app:layout_constraintTop_toBottomOf="@id/location"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:text="gender"
+        android:textColor="@color/teal_700"
+        app:layout_constraintTop_toBottomOf="@id/type"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/origin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:text="origin"
+        android:textColor="@color/teal_700"
+        app:layout_constraintTop_toBottomOf="@id/gender"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/created"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:text="created"
+        android:textColor="@color/teal_700"
+        app:layout_constraintTop_toBottomOf="@id/origin"/>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
