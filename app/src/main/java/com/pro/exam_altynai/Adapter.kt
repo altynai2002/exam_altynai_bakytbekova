@@ -1,5 +1,6 @@
 package com.pro.exam_altynai
 
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -46,6 +47,15 @@ class ItemAdapter(private val click: (id: Long) -> Unit) : RecyclerView.Adapter<
             val location = itemView.findViewById<AppCompatTextView>(R.id.location)
             txt.text = item.name
             status.text = item.status
+            if(item.status == "Dead") {
+                status.setTextColor(Color.RED)
+            }
+            else if (item.status == "Alive") {
+                status.setTextColor(Color.GREEN)
+            }
+            else {
+                status.setTextColor(Color.WHITE)
+            }
             species.text = item.species
             location.text = item.location
             Glide.with(itemView.context).load(item.image).into(image)
