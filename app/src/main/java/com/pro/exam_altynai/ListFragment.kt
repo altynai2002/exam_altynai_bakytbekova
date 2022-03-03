@@ -54,6 +54,7 @@ class ListFragment: Fragment(R.layout.fragment_list) {
                 val listEp = mutableListOf<CharActer>()
 
                 it.results.forEach {
+                    Log.e("TAG", "list $it")
                     val character = CharActer(
                         id = it.id,
                         name = it.name,

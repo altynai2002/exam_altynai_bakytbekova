@@ -16,8 +16,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_margin="10dp"
             android:src="@drawable/ic_launcher_background"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -31,7 +31,7 @@
             android:textColor="@color/white"
             android:textSize="14sp"
             android:layout_margin="10dp"
-            android:text="name"
+            android:text="@string/name"
             app:layout_constraintLeft_toRightOf="@id/image"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -41,9 +41,9 @@
             android:layout_height="wrap_content"
             android:background="@color/teal_700"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:layout_margin="10dp"
-            android:text="status"
+            android:text="@string/status"
             app:layout_constraintBottom_toBottomOf="@id/image"
             app:layout_constraintLeft_toRightOf="@id/image"
             app:layout_constraintTop_toBottomOf="@id/itemTxt"/>
@@ -53,11 +53,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:layout_marginRight="160dp"
             android:background="@color/teal_700"
-            android:text="species"
+            android:text="@string/species"
             android:textColor="@color/white"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/itemTxt"
             app:layout_constraintTop_toTopOf="parent" />
@@ -70,7 +69,7 @@
             android:textColor="@color/white"
             android:textSize="12sp"
             android:layout_margin="10dp"
-            android:text="location"
+            android:text="@string/location"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/itemTxt"/>

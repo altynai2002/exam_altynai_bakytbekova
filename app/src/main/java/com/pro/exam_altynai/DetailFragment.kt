@@ -37,8 +37,10 @@ class DetailFragment: Fragment(R.layout.fragment_detail) {
                     .doOnSuccess {
                         if (it.image != null) {
                             Log.e("TAG", "Image $it")
+                            Log.e("TAG", "Image ${it.location.name}")
                             Glide.with(requireContext()).load(it.image).into(image)
                         }
+                        Log.e("TAG", "detail $it")
                         name.text = "name: " + it.name
                         status.text = "status: " + it.status
                         species.text = "species: ${it.species}"
