@@ -36,12 +36,10 @@ class DetailFragment: Fragment(R.layout.fragment_detail) {
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnSuccess {
                         if (it.image != null) {
-                            Log.e("TAG", "Image $it")
-                            Log.e("TAG", "Image ${it.location.name}")
+//                            Log.e("TAG", "Image $it")
                             Glide.with(requireContext()).load(it.image).into(image)
                         }
-                        Log.e("TAG", "detail $it")
-                        name.text = "name: " + it.name
+                        name.text = it.name
                         status.text = "status: " + it.status
                         species.text = "species: ${it.species}"
                         gender.text = "gender: " + it.gender
