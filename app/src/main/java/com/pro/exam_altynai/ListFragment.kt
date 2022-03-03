@@ -19,6 +19,7 @@ class ListFragment: Fragment(R.layout.fragment_list) {
     private val binding get() = _binding!!
 
     private val rickMortyApi get() = Injector.rickMortyApi
+    private val listEp = mutableListOf<CharActer>()
     private lateinit var listener : OnItemClicked
     private val dbInstance get() = Injector.database
 
@@ -51,7 +52,7 @@ class ListFragment: Fragment(R.layout.fragment_list) {
         rickMortyApi.getAllChar()
             .subscribeOn(Schedulers.io())
             .map {
-                val listEp = mutableListOf<CharActer>()
+//                val listEp = mutableListOf<CharActer>()
 
                 it.results.forEach {
                     Log.e("TAG", "list $it")
