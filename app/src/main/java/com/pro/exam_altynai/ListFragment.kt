@@ -21,6 +21,7 @@ class ListFragment: Fragment(R.layout.fragment_list) {
     private val rickMortyApi get() = Injector.rickMortyApi
     private lateinit var listener : OnItemClicked
     private val dbInstance get() = Injector.database
+    private lateinit var adapter: ItemAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -33,7 +34,7 @@ class ListFragment: Fragment(R.layout.fragment_list) {
 
         val recycler = view.findViewById<RecyclerView>(R.id.recycler)
         val layoutManager = LinearLayoutManager(activity)
-        val adapter = ItemAdapter {
+        adapter = ItemAdapter {
             Toast.makeText(activity, "Character -$it", Toast.LENGTH_SHORT).show()
             listener.onClick(it)
         }
@@ -42,13 +43,17 @@ class ListFragment: Fragment(R.layout.fragment_list) {
         recycler.adapter = adapter
         recycler.addItemDecoration(DividerItemDecoration(activity, RecyclerView.VERTICAL))
 
+        thread()
+
         //обновление
         binding.swiperefresh.setOnRefreshListener {
-            rickMortyApi.getAllChar()
+            thread()
             adapter.notifyDataSetChanged()
             binding.swiperefresh.isRefreshing = false
         }
+    }
 
+    private fun thread(){
         rickMortyApi.getAllChar()
             .subscribeOn(Schedulers.io())
             .map {
@@ -86,8 +91,10 @@ class ListFragment: Fragment(R.layout.fragment_list) {
                     "fragmentItemInfo doOnError getById ${Thread.currentThread().name}"
                 )
             }
+            .doFinally {
+                //
+            }
             .subscribe()
-
     }
 
     override fun onDestroyView() {

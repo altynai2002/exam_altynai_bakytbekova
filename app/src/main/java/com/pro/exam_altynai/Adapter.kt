@@ -14,6 +14,7 @@ import com.pro.exam_altynai.database.CharActer
 
 class ItemAdapter(private val click: (id: Long) -> Unit) : RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
     private var list = listOf<CharActer>()
+
     fun setData(list: List<CharActer>) {
         this.list = list
         notifyDataSetChanged()
