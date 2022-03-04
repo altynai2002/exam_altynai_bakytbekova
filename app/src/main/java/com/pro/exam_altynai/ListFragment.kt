@@ -49,7 +49,7 @@ class ListFragment: Fragment(R.layout.fragment_list) {
         binding.swiperefresh.setOnRefreshListener {
             thread()
             adapter.notifyDataSetChanged()
-            binding.swiperefresh.isRefreshing = false
+
         }
     }
 
@@ -92,7 +92,7 @@ class ListFragment: Fragment(R.layout.fragment_list) {
                 )
             }
             .doFinally {
-                //
+                binding.swiperefresh.isRefreshing = false
             }
             .subscribe()
     }
