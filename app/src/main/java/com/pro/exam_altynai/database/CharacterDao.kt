@@ -8,7 +8,7 @@ import io.reactivex.Single
 interface CharacterDao {
 
     @Query("SELECT * FROM character")
-    fun getAll(): List<CharActer>
+    fun getAll(): Observable<List<CharActer>>
 
     @Query("SELECT * FROM character WHERE id = :id")
     fun getById(id: Long?): Single<CharActer>

@@ -27,15 +27,6 @@ class App: Application() {
             .fallbackToDestructiveMigration()
             .build()
 
-//        Retrofit
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        rickMortyApi = retrofit.create(RickMortyApi::class.java)
-
         val okHttpClient = OkHttpClient.Builder()
             .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT, TimeUnit.SECONDS)
@@ -43,6 +34,16 @@ class App: Application() {
             .addInterceptor(httpLoggingInterceptor())
             .addInterceptor(httpHeaderLoggingInterceptor())
             .build()
+
+//        Retrofit
+        val retrofit = Retrofit.Builder()
+            .client(okHttpClient)
+            .baseUrl(BASE_URL)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        rickMortyApi = retrofit.create(RickMortyApi::class.java)
 
 
     }
