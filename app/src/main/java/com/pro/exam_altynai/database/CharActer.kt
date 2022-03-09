@@ -17,6 +17,7 @@ data class CharActer(
     val type: String?,
     val gender: String,
     val url: String,
+    val episode: List<String>,
     val created: String
 )
 

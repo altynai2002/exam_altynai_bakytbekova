@@ -1,9 +1,6 @@
 package com.pro.exam_altynai
 
 import android.content.Context
-import android.content.Context.CONNECTIVITY_SERVICE
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -16,8 +13,6 @@ import com.pro.exam_altynai.database.CharActer
 import com.pro.exam_altynai.databinding.FragmentListBinding
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import java.net.ConnectException
-import java.net.UnknownHostException
 
 class ListFragment: Fragment(R.layout.fragment_list) {
     private var _binding: FragmentListBinding? = null
@@ -48,39 +43,22 @@ class ListFragment: Fragment(R.layout.fragment_list) {
         recycler.adapter = adapter
         recycler.addItemDecoration(DividerItemDecoration(activity, RecyclerView.VERTICAL))
 
-            thread()
-            getFromRoom()
-
+        thread()
 
         //обновление
         binding.swiperefresh.setOnRefreshListener {
             thread()
-            getFromRoom()
         }
 
     }
 
 
-    @Throws(Exception::class)
-    private fun threadTry(){
-        try {
-            thread()
-        }
-        catch (e: UnknownHostException) {
-            Log.e("TAG","host exception")
-        }
-        catch (e: ConnectException){
-            Log.e("TAG","connect exception")
-        }
-        catch (e: Exception){
-            Log.e("TAG","exception $e")
-        }
-    }
-
-    @Throws(Exception::class)
     private fun thread(){
         rickMortyApi.getAllChar()
             .subscribeOn(Schedulers.io())
+            .doFinally {
+                binding.swiperefresh.isRefreshing = false
+            }
             .map {
                 val list = mutableListOf<CharActer>()
 
@@ -95,6 +73,7 @@ class ListFragment: Fragment(R.layout.fragment_list) {
                         gender = it.gender,
                         url = it.url,
                         type = it.type,
+                        episode = it.episode,
                         location = it.location.name
                     )
                     list.add(character)
@@ -110,31 +89,7 @@ class ListFragment: Fragment(R.layout.fragment_list) {
                 adapter.setData(it)
                 Log.e("TAG", "fragmentMain doOnNext ${Thread.currentThread().name}")
             }
-            .doOnError {
-                Log.e(
-                    "TAG",
-                    "fragmentItemInfo doOnError getById ${Thread.currentThread().name}"
-                )
-            }
-            .doFinally {
-                binding.swiperefresh.isRefreshing = false
-            }
-            .subscribe()
-    }
-
-    private fun getFromRoom(){
-        val roomList = dbInstance.characterDao().getAll()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext{
-                adapter.setData(it)
-            }
-            .doOnError {
-                Log.e("TAG", "room list doOnError ${Thread.currentThread().name}")
-            }
-            .doFinally {
-                binding.swiperefresh.isRefreshing = false
-            }
+            .onErrorResumeNext ( dbInstance.characterDao().getAll() )
             .subscribe()
     }
 

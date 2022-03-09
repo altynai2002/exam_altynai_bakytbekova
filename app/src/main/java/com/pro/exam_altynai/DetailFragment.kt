@@ -46,6 +46,7 @@ class DetailFragment: Fragment(R.layout.fragment_detail) {
                         created.text = "created date: " + it.created
                         origin.text = "origin: " + it.origin.name
                         location.text = "location: " + it.location.name
+                        episode.text = it.episode.toString()
                         if (it.type != null) {
                             type.text = "type: " + it.type
                         }
